@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const { NFC } = require('nfc-pcsc')
@@ -13,7 +15,7 @@ function createWindow() {
     }
   })
 
-  win.loadURL('https://moodle.ncku.edu.tw/login/index.php')
+  win.loadURL(`https://moodle.ncku.edu.tw/login`)
 
   win.webContents.on('new-window', (event, url) => {
     event.preventDefault()

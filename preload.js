@@ -1,9 +1,16 @@
 const { ipcRenderer, clipboard } = require('electron')
 
+const { TA_ACCOUNT, TA_PASSWD, COURSE_ID } = process.env
+
 window.addEventListener('DOMContentLoaded', () => {
   switch (location.pathname) {
     case '/':
-      location.replace('my')
+      location.replace(`course/view.php?id=${COURSE_ID}`)
+      break
+    case '/login/':
+      document.getElementById('username').value = TA_ACCOUNT
+      document.getElementById('password').value = TA_PASSWD
+      document.getElementsByTagName('form')[0].submit()
       break
     case '/course/view.php':
       document.getElementsByClassName('activityinstance')[1].children[0].click()
