@@ -19,24 +19,24 @@ window.addEventListener('DOMContentLoaded', () => {
       document.getElementsByTagName('form')[1].submit()
       break
     case '/mod/attendance/signin_attendance.php':
-      let inQueue
+      const { uidQueue } = localStorage
       const btnElement = document.getElementById('id_send')
       const inputElement = document.getElementById('id_cardno')
+      let inQueue = !!uidQueue
 
       document.getElementsByTagName('form')[0].addEventListener('submit', () => inQueue = true)
 
       ipcRenderer.on('uid', (_, uid) => {
         clipboard.writeText(uid)
-        if (!inQueue) {
+        if (inQueue) {
+          localStorage.uidQueue += uid
+        } else {
           inputElement.value = uid
           btnElement.click()
-        } else {
-          localStorage.uidQueue += uid
         }
       })
 
-      if (localStorage.uidQueue) {
-        const { uidQueue } = localStorage
+      if (uidQueue) {
         uid = uidQueue.slice(0, 10)
         inputElement.value = uid
         btnElement.click()
