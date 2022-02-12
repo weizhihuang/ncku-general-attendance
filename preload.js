@@ -10,10 +10,10 @@ window.addEventListener('DOMContentLoaded', () => {
     case '/login/':
       document.getElementById('username').value = TA_ACCOUNT
       document.getElementById('password').value = TA_PASSWD
-      document.getElementsByTagName('form')[0].submit()
+      setTimeout(() => document.getElementsByTagName('form')[0].submit(), 200)
       break
     case '/course/view.php':
-      document.getElementsByClassName('activityinstance')[1].children[0].click()
+      [...document.getElementsByClassName('instancename')].forEach((element => element.innerText === '點名' && element.click()))
       break
     case '/mod/attendance/take.php':
       document.getElementsByTagName('form')[1].submit()
