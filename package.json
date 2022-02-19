@@ -10,6 +10,7 @@
     "nfc-pcsc": "^0.8.1"
   },
   "scripts": {
+    "postinstall": "electron-rebuild",
     "start": "electron ."
   },
   "devDependencies": {
