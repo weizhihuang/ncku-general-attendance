@@ -6,7 +6,6 @@
 ## Project Setup
 ```
 yarn
-npx electron-rebuild
 ```
 
 ### Run Project
